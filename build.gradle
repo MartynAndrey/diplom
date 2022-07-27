@@ -5,7 +5,13 @@ plugins {
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
+sourceCompatibility = 1.8
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -19,10 +25,23 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.22'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    implementation 'mysql:mysql-connector-java:8.0.29'
-    implementation 'commons-dbutils:commons-dbutils:1.7'
+    testImplementation 'mysql:mysql-connector-java:8.0.29'
+    testImplementation 'commons-dbutils:commons-dbutils:1.7'
+
+    testImplementation 'io.qameta.allure:allure-selenide:2.13.0'
+    testImplementation 'io.rest-assured:rest-assured:4.1.2'
+    testImplementation 'io.qameta.allure:allure-rest-assured:2.13.0'
+
 }
 
 test {
     useJUnitPlatform()
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+    systemProperty 'file.encoding', 'UTF-8'
+    systemProperty 'db.url', System.getProperty('db.url')
+    systemProperty 'db.port', System.getProperty('db.port')
+    systemProperty 'db.name', System.getProperty('db.name', 'app')
+    systemProperty 'db.user', System.getProperty('db.user','user')
+    systemProperty 'db.password', System.getProperty('db.password','pass')
+    systemProperty 'app.url', System.getProperty('app.url','http://localhost:8080')
 }
