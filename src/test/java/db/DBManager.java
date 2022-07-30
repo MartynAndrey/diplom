@@ -95,8 +95,8 @@ public class DBManager {
                         dbConnectionInfo.getUser(),
                         dbConnectionInfo.getPassword())
         ) {
-            String  paymentId = runner.query(connection, bankIdSQL, new ScalarHandler<>());
-            return runner.query(connection, orderSQL, new ScalarHandler<>(), paymentId);
+            String bankId = runner.query(connection, bankIdSQL, new ScalarHandler<>());
+            return runner.query(connection, orderSQL, new ScalarHandler<>(), bankId);
         }
     }
 }
