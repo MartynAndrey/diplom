@@ -1,11 +1,12 @@
 package page;
 
+import data.CardInfo;
+
 import java.time.Duration;
 import java.util.List;
 
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
@@ -67,6 +68,20 @@ public class AppPage {
         this.creditHeader.shouldBe(visible, Duration.ofSeconds(100));
     }
 
+    public void setFields (CardInfo cardInfo) {
+        clearField(this.cardNumberField);
+        this.cardNumberField.setValue(cardInfo.getNumber());
+        clearField(this.cardMonthField);
+        this.cardMonthField.setValue(cardInfo.getMonth());
+        clearField(this.cardYearField);
+        this.cardYearField.setValue(cardInfo.getYear());
+        clearField(this.cardOwnerField);
+        this.cardOwnerField.setValue(cardInfo.getOwner());
+        clearField(this.cardCvvField);
+        this.cardCvvField.setValue(cardInfo.getCvv());
+
+    }
+
     public void setCardNumber(String number) {
         clearField(this.cardNumberField);
         this.cardNumberField.setValue(number);
@@ -97,19 +112,31 @@ public class AppPage {
     }
 
     public void isVisibleSubInvalidFormat() {
-        this.subInvalidFormat.shouldBe(visible, Duration.ofSeconds(100));
+        this.subInvalidFormat.shouldBe(visible);
+        this.subCardExpired.shouldNotBe(visible);
+        this.subEmptyField.shouldNotBe(visible);
+        this.subInvalidDate.shouldNotBe(visible);
     }
 
     public void isVisibleSubCardExpired() {
-        this.subCardExpired.shouldBe(visible, Duration.ofSeconds(100));
+        this.subInvalidFormat.shouldNotBe(visible);
+        this.subCardExpired.shouldBe(visible);
+        this.subEmptyField.shouldNotBe(visible);
+        this.subInvalidDate.shouldNotBe(visible);
     }
 
     public void isVisibleSubEmptyField() {
-        this.subEmptyField.shouldBe(visible, Duration.ofSeconds(100));
+        this.subInvalidFormat.shouldNotBe(visible);
+        this.subCardExpired.shouldNotBe(visible);
+        this.subEmptyField.shouldBe(visible);
+        this.subInvalidDate.shouldNotBe(visible);
     }
 
     public void isVisibleSubInvalidDate() {
-        this.subInvalidDate.shouldBe(visible, Duration.ofSeconds(100));
+        this.subInvalidFormat.shouldNotBe(visible);
+        this.subCardExpired.shouldNotBe(visible);
+        this.subEmptyField.shouldNotBe(visible);
+        this.subInvalidDate.shouldBe(visible);
     }
 
     public void waitNotification() {
@@ -120,16 +147,16 @@ public class AppPage {
         this.successMessage.shouldBe(visible, Duration.ofSeconds(100));
     }
 
-    public void isHideSuccessMessage() {
-        this.successMessage.shouldNotBe(visible, Duration.ofSeconds(100));
+    public void isHiddenSuccessMessage() {
+        this.successMessage.shouldBe(hidden);
     }
 
     public void isVisibleErrorMessage() {
-        this.errorMessage.shouldBe(visible, Duration.ofSeconds(100));
+        this.errorMessage.shouldBe(visible);
     }
 
-    public void isHideErrorMessage() {
-        this.errorMessage.shouldNotBe(visible, Duration.ofSeconds(100));
+    public void isHiddenErrorMessage() {
+        this.errorMessage.shouldBe(hidden);
     }
 
     public void clickNotificationSuccessCloser() {
