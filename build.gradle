@@ -1,14 +1,22 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
+
+allure {
+    version = '2.16.1'
+    useJUnit5 {
+        version = '2.16.1'
+    }
+}
 
 repositories {
     jcenter()
@@ -28,9 +36,9 @@ dependencies {
     testImplementation 'mysql:mysql-connector-java:8.0.29'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
 
-    testImplementation 'io.qameta.allure:allure-selenide:2.13.0'
+    testImplementation 'io.qameta.allure:allure-selenide:2.16.1'
     testImplementation 'io.rest-assured:rest-assured:4.1.2'
-    testImplementation 'io.qameta.allure:allure-rest-assured:2.13.0'
+    testImplementation 'io.qameta.allure:allure-rest-assured:2.16.1'
 
 }
 
