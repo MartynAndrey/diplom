@@ -1,5 +1,8 @@
 package data;
 
+import lombok.Value;
+
+@Value
 public class CardInfo {
     private String number;
     private String month;
@@ -9,111 +12,219 @@ public class CardInfo {
 
     //---number------------------------------------------------
 
-    public static String getNumberApproved() {
-        return "4444 4444 4444 4441";
+    public static CardInfo getNumberApproved() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getNumberDeclined() {
-        return "4444 4444 4444 4442";
+    public static CardInfo getNumberDeclined() {
+        return new CardInfo(
+                "4444 4444 4444 4442",
+                "10",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getNumberStranger() {
-        return "4444 4444 4444 4440";
+    public static CardInfo getNumberStranger() {
+        return new CardInfo(
+                "4444 4444 4444 4440",
+                "10",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getNumberInvalid() {
-        return "4444 asdf +/*-";
+    public static CardInfo getNumberInvalid() {
+        return new CardInfo(
+                "asdf +/*- 5555 )(&d",
+                "10",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getNumberEmpty() {
-        return "";
+    public static CardInfo getNumberShort() {
+        return new CardInfo(
+                "4444 4444",
+                "10",
+                "23",
+                "Smith John",
+                "123");
+    }
+
+    public static CardInfo getNumberEmpty() {
+        return new CardInfo(
+                "",
+                "10",
+                "23",
+                "Smith John",
+                "123");
     }
 
     //---month------------------------------------------------
 
-    public static String getMonthValid() {
-        return "09";
+    public static CardInfo getMonthInvalid() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "a1",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getMonthInvalid() {
-        return "asdf";
+    public static CardInfo getMonthDeficient() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "00",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getMonthDeficient() {
-        return "00";
+    public static CardInfo getMonthExceed() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "36",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getMonthExceed() {
-        return "36";
+    public static CardInfo getMonthShort() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "2",
+                "23",
+                "Smith John",
+                "123");
     }
 
-    public static String getMonthEmpty() {
-        return "";
+    public static CardInfo getMonthEmpty() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "",
+                "23",
+                "Smith John",
+                "123");
     }
 
     //---year------------------------------------------------
 
-    public static String getYearValid() {
-        return "23";
+    public static CardInfo getYearInvalid() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "7f",
+                "Smith John",
+                "123");
     }
 
-    public static String getYearInvalid() {
-        return "asdf";
+    public static CardInfo getYearDeficient() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "10",
+                "Smith John",
+                "123");
     }
 
-    public static String getYearDeficient() {
-        return "10";
+    public static CardInfo getYearExceed() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "30",
+                "Smith John",
+                "123");
     }
 
-    public static String getYearExceed() {
-        return "30";
+    public static CardInfo getYearShort() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "3",
+                "Smith John",
+                "123");
     }
 
-    public static String getYearEmpty() {
-        return "";
+    public static CardInfo getYearEmpty() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "",
+                "Smith John",
+                "123");
     }
 
     //---owner------------------------------------------------
 
-    public static String getOwnerValid() {
-        return "Smith John";
+    public static CardInfo getOwnerInvalid() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "56-k!@:..%",
+                "123");
     }
 
-    public static String getOwnerInvalid() {
-        return "F56a-s!@d:..fT%";
+    public static CardInfo getOwnerDeficient() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "A",
+                "123");
     }
 
-    public static String getOwnerDeficient() {
-        return "A";
+    public static CardInfo getOwnerExceed() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad ibn Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad ibn Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad ibn Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad",
+                "123");
     }
 
-    public static String getOwnerExceed() {
-        return "Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad ibn Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad ibn Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad ibn Abdallah ibn Aziz ibn Fatikh ibn Ayahallic ibn Farukh ibn Mohammad";
-    }
-
-    public static String getOwnerEmpty() {
-        return "";
+    public static CardInfo getOwnerEmpty() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "",
+                "123");
     }
 
     //---cvv------------------------------------------------
 
-    public static String getCvvValid() {
-        return "123";
+    public static CardInfo getCvvInvalid() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "Smith John",
+                "4g!");
     }
 
-    public static String getCvvInvalid() {
-        return "gh6bs";
+    public static CardInfo getCvvDeficient() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "Smith John",
+                "45");
     }
 
-    public static String getCvvDeficient() {
-        return "45";
+    public static CardInfo getCvvEmpty() {
+        return new CardInfo(
+                "4444 4444 4444 4441",
+                "10",
+                "23",
+                "Smith John",
+                "");
     }
 
-    public static String getCvvExceed() {
-        return "6589";
-    }
-
-    public static String getCvvEmpty() {
-        return "";
-    }
 }
